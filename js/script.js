@@ -110,7 +110,16 @@ setInterval(function(){
 
 let pauseBtn = document.getElementById('pauseButton');
  pauseBtn.addEventListener('click', function(){
-    isPaused = true;
+    
+    
+
+    if(!isPaused){
+        isPaused = true;
+        pauseBtn.innerText = 'Riprendi';
+    }else{
+        isPaused = false;
+        pauseBtn.innerText = 'Metti in pausa';
+    }
  })
 
 
