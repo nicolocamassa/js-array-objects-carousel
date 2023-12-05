@@ -27,26 +27,42 @@ let btnPre = document.querySelector('.prev');
 
 /* Contatore dei click */
 let click = 0;
+console.log(click);
 
 /* Collegamento per l'immagine */
 const imgElement = document.querySelector('img');
 
 /* Funzione per il bottone next */
 const nextView = () => { 
-    /* Incremento dei click */
-    click++
     
     /* Modifica del percorso per l'immagine */
-    imgElement.src = images[click].image;
+    
+
+    if(click != images.length - 1){
+        click++;
+        imgElement.src = images[click].image;
+    }else{
+        click = 0;
+        imgElement.src = images[click].image;
+    }
+
+    console.log(click);
 }
 
 const prevView = () => { 
-    /* Incremento dei click */
-    click--
-    
-    /* Modifica del percorso per l'immagine */
-    imgElement.src = images[click].image;
+
+    if(click != 0){
+        click--;
+        imgElement.src = images[click].image;
+    }else{
+        click = images.length - 1;
+        imgElement.src = images[click].image;
+    }
+
+    console.log(click);
 }
+
+
 
 /* Ascolto del click per il bottone Next */
 btnNxt.addEventListener('click', nextView)
