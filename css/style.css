@@ -14,11 +14,13 @@
 
 .items {
     position: relative;
-    width: 700px;
-    height: 300px;
+    width:  100%;
+    height: 400px;
+    display: flex;
 }
 
 .item {
+    width: 100%;
     height: 100%;
     display: none;
     position: relative;
@@ -101,4 +103,11 @@
 
 .padding-text{
     padding: 0px 50px 0px 30px
+}
+
+.list-image{
+    position: relative;
+    background-color: red;
+    height: 400px;
+    width: 300px;
 }
