@@ -116,4 +116,10 @@
     height: calc(400px / 5);
     object-fit: cover;
     margin-bottom: -4px;
+    filter: brightness(0.5);
+    
+}
+
+#photo0{
+    filter: brightness(1);
 }

@@ -27,7 +27,6 @@ let btnPre = document.querySelector('.prev');
 
 /* Contatore dei click */
 let click = 0;
-console.log(click);
 
 /* Collegamento per l'immagine */
 const imgElement = document.querySelector('img');
@@ -35,44 +34,62 @@ const titleElement = document.querySelector('h2');
 const textElement = document.querySelector('h5');
 
 /* Funzione per il bottone next */
-const nextView = () => { 
-    
+const nextView = () => {
     /* Modifica del percorso per l'immagine */
-    if(click != images.length - 1){
+    if (click != images.length - 1) {
         click++;
         imgElement.src = images[click].image;
         titleElement.innerText = images[click].title;
         textElement.innerText = images[click].text;
         images[click].image;
-    }else{
+    } else {
         click = 0;
         imgElement.src = images[click].image;
         titleElement.innerText = images[click].title;
         textElement.innerText = images[click].text;
     }
-
-    console.log(click);
 }
 
-const prevView = () => { 
-
-    if(click != 0){
+const prevView = () => {
+    if (click != 0) {
         click--;
         imgElement.src = images[click].image;
         titleElement.innerText = images[click].title;
         textElement.innerText = images[click].text;
-    }else{
+    } else {
         click = images.length - 1;
         imgElement.src = images[click].image;
         titleElement.innerText = images[click].title;
         textElement.innerText = images[click].text;
     }
+}
 
-    console.log(click);
+const menuView = () => {
+    for(key in images){
+        let imgStyle = document.getElementById('photo' + key);
+        if(key == click){
+            
+            imgStyle.style.filter = 'brightness(100%)'
+            console.log(key)
+            console.log(click)
+            console.log(imgStyle)
+        }else{
+            imgStyle.style.filter = 'brightness(50%)'
+        }
+    }
 }
 
 
-
 /* Ascolto del click per il bottone Next */
-btnNxt.addEventListener('click', nextView)
-btnPre.addEventListener('click', prevView)
+btnNxt.addEventListener('click', function () {
+    nextView()
+    menuView();
+}
+)
+
+btnPre.addEventListener('click', function () {
+    prevView()
+    menuView();
+}
+)
+
