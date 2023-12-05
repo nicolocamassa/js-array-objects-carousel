@@ -93,3 +93,11 @@ btnPre.addEventListener('click', function () {
 }
 )
 
+
+setInterval(nextView, 2000);
+setInterval(menuView, 2000);
+
+
+
+
+

@@ -117,6 +117,7 @@
     object-fit: cover;
     margin-bottom: -4px;
     filter: brightness(0.5);
+    transition-duration: 1s;
     
 }
 
