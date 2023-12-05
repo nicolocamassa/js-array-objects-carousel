@@ -23,6 +23,7 @@ const images = [
 ];
 
 let btnNxt = document.querySelector('.next');
+let btnPre = document.querySelector('.prev');
 
 /* Contatore dei click */
 let click = 0;
@@ -39,5 +40,14 @@ const nextView = () => {
     imgElement.src = images[click].image;
 }
 
+const prevView = () => { 
+    /* Incremento dei click */
+    click--
+    
+    /* Modifica del percorso per l'immagine */
+    imgElement.src = images[click].image;
+}
+
 /* Ascolto del click per il bottone Next */
 btnNxt.addEventListener('click', nextView)
+btnPre.addEventListener('click', prevView)
