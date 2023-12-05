@@ -22,59 +22,71 @@ const images = [
     }
 ];
 
+/* Collegamento per il bottone next */
 let btnNxt = document.querySelector('.next');
+
+/* Collegamento per il bottone prev */
 let btnPre = document.querySelector('.prev');
+
+/* Collegamento con il bottone di pausa */
+let pauseBtn = document.getElementById('pauseButton');
+
+/* Collegamento con il bottone di inversione dello scorrimento */
+let invertBtn = document.getElementById('invertButton');
 
 /* Contatore dei click */
 let click = 0;
 
 /* Collegamento per l'immagine */
 const imgElement = document.querySelector('img');
+
+/* Collegamento per il titolo */
 const titleElement = document.querySelector('h2');
+
+/* Collegamento per il testo */
 const textElement = document.querySelector('h5');
 
 /* Funzione per il bottone next */
 const nextView = () => {
-    /* Modifica del percorso per l'immagine */
-    if (click != images.length - 1) {
-        click++;
-        imgElement.src = images[click].image;
-        titleElement.innerText = images[click].title;
-        textElement.innerText = images[click].text;
-        images[click].image;
-    } else {
-        click = 0;
-        imgElement.src = images[click].image;
+    if (click != images.length - 1) {   /* Se il numero di click è diverso dalla lunghezza del vettore */
+        click++; /* Incremento dei click */
+        imgElement.src = images[click].image;  /* Cambio immagine con indice il numero di click */
+        titleElement.innerText = images[click].title; /* Cambio titolo con indice il numero di click */
+        textElement.innerText = images[click].text; /* Cambio testo con indice il numero di click */
+    } else {    /* Se il numero di click è uguale alla lunghezza del vettore */
+        click = 0;  /* Il numero di click si resetta */
+        imgElement.src = images[click].image; 
         titleElement.innerText = images[click].title;
         textElement.innerText = images[click].text;
     }
 }
 
+/* Funzione per il bottone prev */
 const prevView = () => {
-    if (click != 0) {
-        click--;
-        imgElement.src = images[click].image;
-        titleElement.innerText = images[click].title;
-        textElement.innerText = images[click].text;
-    } else {
-        click = images.length - 1;
+    if (click != 0) { /* Se il numero di click è diverso da 0 */
+        click--; /* Decremento dei click */
+        imgElement.src = images[click].image; /* Cambio immagine con indice il numero di click */
+        titleElement.innerText = images[click].title; /* Cambio titolo con indice il numero di click */
+        textElement.innerText = images[click].text; /* Cambio testo con indice il numero di click */
+    } else { /* Se il numero di click è 0 */
+        click = images.length - 1; /* Il valore di click è ugale alla lunghezza del vettore */
         imgElement.src = images[click].image;
         titleElement.innerText = images[click].title;
         textElement.innerText = images[click].text;
     }
 }
 
+/* Funzione per la visualizzazione laterale delle immagini */
 const menuView = () => {
-    for(key in images){
-        let imgStyle = document.getElementById('photo' + key);
-        if(key == click){
-            
-            imgStyle.style.filter = 'brightness(100%)'
-            console.log(key)
-            console.log(click)
-            console.log(imgStyle)
-        }else{
-            imgStyle.style.filter = 'brightness(50%)'
+
+    /* Ciclo per le chiavi della classe images */
+    for (key in images) {
+        let imgStyle = document.getElementById('photo' + key); /* Collegamento con l'id photo + l'indice */
+        if (key == click) { /* Se il numero dell'indice è uguale ai click */
+
+            imgStyle.style.filter = 'brightness(100%)' /* Imposta la luminosità al massimo */
+        } else {
+            imgStyle.style.filter = 'brightness(50%)'  /* Altrimenti luminosità 50% */
         }
     }
 }
@@ -87,40 +99,61 @@ btnNxt.addEventListener('click', function () {
 }
 )
 
+/* Ascolto del click per il bottone Prev */
 btnPre.addEventListener('click', function () {
     prevView()
     menuView();
 }
 )
 
+/* Tempo di scorrimento automatico */
 const TIME_SCROLL = 2000;
 
+/* Valore di default per la pausa */
 let isPaused = false;
-setInterval(function(){
-    if(!isPaused){
-        nextView()
+
+/* Valore di default per l'inversione dello scorrimento automatico */
+let inverted = false;
+
+setInterval(function () {
+    if (inverted) { /* Se inverted == true */
+        if (!isPaused) { /* Se isPaused != false */
+            prevView() /* Scorrimento invertito */
+            menuView()
+        }
     }
 }, TIME_SCROLL);
 
-setInterval(function(){
-    if(!isPaused){
-        menuView()
+setInterval(function () {
+    if (!inverted) { /* Se inverted != true */
+        if (!isPaused) { /* Se isPaused != true */
+            nextView() /* Scorrimento default */
+            menuView()
+        }
     }
 }, TIME_SCROLL);
 
-let pauseBtn = document.getElementById('pauseButton');
- pauseBtn.addEventListener('click', function(){
-    
-    
+/* Ascolto del bottone di pausa */
+pauseBtn.addEventListener('click', function () {
 
-    if(!isPaused){
-        isPaused = true;
-        pauseBtn.innerText = 'Riprendi';
-    }else{
-        isPaused = false;
+    if (!isPaused) { /* Se isPaused != true */
+        isPaused = true; /* Imposta isPaused su true */
+        pauseBtn.innerText = 'Riprendi'; /* Cambiamento del testo sul bottone */
+    } else { /* Se isPaused == true */
+        isPaused = false; /* Imposta isPaused su false */
         pauseBtn.innerText = 'Metti in pausa';
     }
- })
+
+})
+
+/* Ascolto del bottone per inversione scorrimento carosello */
+invertBtn.addEventListener('click', function () {
+    if (!inverted) {  /* Se inverted != true */
+        inverted = true; 
+    } else { /* Se inverted == true */
+        inverted = false;
+    }
+})
 
 
 
