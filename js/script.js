@@ -93,9 +93,25 @@ btnPre.addEventListener('click', function () {
 }
 )
 
+const TIME_SCROLL = 2000;
 
-setInterval(nextView, 2000);
-setInterval(menuView, 2000);
+let isPaused = false;
+setInterval(function(){
+    if(!isPaused){
+        nextView()
+    }
+}, TIME_SCROLL);
+
+setInterval(function(){
+    if(!isPaused){
+        menuView()
+    }
+}, TIME_SCROLL);
+
+let pauseBtn = document.getElementById('pauseButton');
+ pauseBtn.addEventListener('click', function(){
+    isPaused = true;
+ })
 
 
 

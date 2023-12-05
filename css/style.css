@@ -10,13 +10,15 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .items {
     position: relative;
-    width:  100%;
+    width:  75%;
     height: 397px;
     display: flex;
+    
 }
 
 .item {
@@ -108,7 +110,7 @@
 .list-image{
     position: relative;
     height: 400px;
-    width: 300px;
+    width: 25%;
 }
 
 .list-image img{
@@ -123,4 +125,20 @@
 
 #photo0{
     filter: brightness(1);
+}
+
+.container_2{
+    margin-top: -400px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button_console{
+    background-color: rgb(0, 98, 255);
+    padding: 10px 70px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
 }
