@@ -37,6 +37,7 @@ let invertBtn = document.getElementById('invertButton');
 /* Contatore dei click */
 let click = 0;
 
+
 /* Collegamento per l'immagine */
 const imgElement = document.querySelector('img');
 
@@ -48,32 +49,17 @@ const textElement = document.querySelector('h5');
 
 /* Funzione per il bottone next */
 const nextView = () => {
-    if (click != images.length - 1) {   /* Se il numero di click è diverso dalla lunghezza del vettore */
-        click++; /* Incremento dei click */
-        imgElement.src = images[click].image;  /* Cambio immagine con indice il numero di click */
-        titleElement.innerText = images[click].title; /* Cambio titolo con indice il numero di click */
-        textElement.innerText = images[click].text; /* Cambio testo con indice il numero di click */
-    } else {    /* Se il numero di click è uguale alla lunghezza del vettore */
-        click = 0;  /* Il numero di click si resetta */
-        imgElement.src = images[click].image; 
-        titleElement.innerText = images[click].title;
-        textElement.innerText = images[click].text;
-    }
+    click = (click + 1) % images.length;
+    imgElement.src = images[click].image; /* Cambio immagine con indice il numero di click */
+    titleElement.innerText = images[click].title; /* Cambio titolo con indice il numero di click */
+    textElement.innerText = images[click].text; /* Cambio testo con indice il numero di click */
 }
-
 /* Funzione per il bottone prev */
 const prevView = () => {
-    if (click != 0) { /* Se il numero di click è diverso da 0 */
-        click--; /* Decremento dei click */
-        imgElement.src = images[click].image; /* Cambio immagine con indice il numero di click */
-        titleElement.innerText = images[click].title; /* Cambio titolo con indice il numero di click */
-        textElement.innerText = images[click].text; /* Cambio testo con indice il numero di click */
-    } else { /* Se il numero di click è 0 */
-        click = images.length - 1; /* Il valore di click è ugale alla lunghezza del vettore */
-        imgElement.src = images[click].image;
-        titleElement.innerText = images[click].title;
-        textElement.innerText = images[click].text;
-    }
+    click = (click + images.length - 1) % images.length;
+    imgElement.src = images[click].image;
+    titleElement.innerText = images[click].title;
+    textElement.innerText = images[click].text;
 }
 
 /* Funzione per la visualizzazione laterale delle immagini */
@@ -149,13 +135,8 @@ pauseBtn.addEventListener('click', function () {
 /* Ascolto del bottone per inversione scorrimento carosello */
 invertBtn.addEventListener('click', function () {
     if (!inverted) {  /* Se inverted != true */
-        inverted = true; 
+        inverted = true;
     } else { /* Se inverted == true */
         inverted = false;
     }
 })
-
-
-
-
-
